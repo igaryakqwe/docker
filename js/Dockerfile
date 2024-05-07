@@ -1,4 +1,4 @@
-FROM node:20.12-alpine as build
+FROM node:20.12-bookworm
 
 WORKDIR /app
 
@@ -8,10 +8,4 @@ RUN npm install
 
 COPY . .
 
-FROM gcr.io/distroless/nodejs20-debian12
-
-WORKDIR /app
-
-COPY --from=build /app .
-
-CMD ["app.js"]
+CMD ["npm", "start"]
